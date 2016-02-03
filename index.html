@@ -113,6 +113,7 @@
 		return o;j
 	}
 	function onPuzzleClick(e){
+		e.preventDefault();
 		var touch = e.targetTouches[0];
 		_mouse.x = touch.pageX;
 		_mouse.y = touch.pageY;
@@ -143,6 +144,7 @@
 	return null;
 }
 	function updatePuzzle(e){
+		e.preventDefault();
 	_currentDropPiece = null;
 
 	var touch = e.targetTouches[0];
