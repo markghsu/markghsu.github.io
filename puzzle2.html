@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="utf-8">
 		<title>Happy Birthday!</title>
 		<link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="css/main.css">
@@ -22,7 +23,8 @@
 				<canvas id="canvas">Error, your browser doesn't support Canvas element</canvas>
 			</section>
 		</article>
-	<script>
+
+		<script>
 	//http://code.tutsplus.com/tutorials/create-an-html5-canvas-tile-swapping-puzzle--active-10747
 	// updated for mobile https://mobiforge.com/design-development/touch-friendly-drag-and-drop
 	const PUZZLE_DIFFICULTY = 3
@@ -65,20 +67,7 @@
 		_currentPiece = null;
 		_currentDropPiece = null;
 		_stage.drawImage(_img, 0, 0, _puzzleWidth, _puzzleHeight, 0, 0, _puzzleWidth, _puzzleHeight);
-		createTitle("Click to Start Puzzle");
-		buildPieces();
-		
-	}
-	function createTitle(msg){
-		_stage.fillStyle = "#000000";
-		_stage.globalAlpha = .4;
-		_stage.fillRect(100,_puzzleHeight - 40,_puzzleWidth - 200,40);
-		_stage.fillStyle = "#FFFFFF";
-		_stage.globalAlpha = 1;
-		_stage.textAlign = "center";
-		_stage.textBaseline = "middle";
-		_stage.font = "20px Arial";
-		_stage.fillText(msg,_puzzleWidth / 2,_puzzleHeight - 20);
+		buildPieces();	
 	}
 	function buildPieces(){
 		var i;
@@ -118,23 +107,17 @@
 				yPos += _pieceHeight;
 			}
 		}
-		document.onmousedown = onPuzzleClick;
+		_canvas.addEventListener("touchstart", onPuzzleClick, false);
 	}
-
 	function shuffleArray(o){
 		for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
 		return o;j
 	}
-
 	function onPuzzleClick(e){
-		if(e.offsetX || e.offsetX == 0){
-			_mouse.x = e.offsetX;// + _canvas.offsetLeft;
-			_mouse.y = e.offsetY;// + _canvas.offsetTop;
-		}
-		else if(e.layerX || e.layerX == 0){
-			_mouse.x = e.layerX - _canvas.offsetLeft;
-			_mouse.y = e.layerY - _canvas.offsetTop;
-		}
+		e.preventDefault();
+		var touch = e.targetTouches[0];
+		_mouse.x = touch.pageX;
+		_mouse.y = touch.pageY;
 		_currentPiece = checkPieceClicked();
 		if(_currentPiece != null){
 			_stage.clearRect(_currentPiece.xPos,_currentPiece.yPos,_pieceWidth,_pieceHeight);
@@ -143,11 +126,11 @@
 			_stage.globalAlpha = .9;
 			_stage.drawImage(_img, _currentPiece.sx, _currentPiece.sy, _pieceWidth, _pieceHeight, _mouse.x - (_pieceWidth / 2), _mouse.y - (_pieceHeight / 2), _pieceWidth, _pieceHeight);
 			_stage.restore();//restore previous draw style (100% opacity)
-			document.onmousemove = updatePuzzle;
-			document.onmouseup = pieceDropped;
+			_canvas.addEventListener("touchmove", updatePuzzle, false);
+			_canvas.addEventListener("touchend", pieceDropped, false);
 		}
 	}
-function checkPieceClicked(){
+	function checkPieceClicked(){
 	var i;
 	var piece;
 	for(i = 0;i < _pieces.length;i++){
@@ -161,18 +144,14 @@ function checkPieceClicked(){
 	}
 	return null;
 }
-//Checks mouse position (mouse has just moved) and redraws the entire puzzle. This is necessary in order to delete previous movements.
-// Canvas doesn't store any prior state data. Just draws pixels then done.
-function updatePuzzle(e){
+	function updatePuzzle(e){
+		e.preventDefault();
 	_currentDropPiece = null;
-	if(e.offsetX || e.offsetX == 0){
-		_mouse.x = e.offsetX;// + _canvas.offsetLeft;
-		_mouse.y = e.offsetY;// + _canvas.offsetTop;
-	}
-	else if(e.layerX || e.layerX == 0){
-		_mouse.x = e.layerX - _canvas.offsetLeft;
-		_mouse.y = e.layerY - _canvas.offsetTop;
-	}
+
+	var touch = e.targetTouches[0];
+	_mouse.x = touch.pageX;
+	_mouse.y = touch.pageY;
+
 	_stage.clearRect(0,0,_puzzleWidth,_puzzleHeight);
 	var i;
 	var piece;
@@ -204,8 +183,8 @@ function updatePuzzle(e){
 	_stage.strokeRect( _mouse.x - (_pieceWidth / 2), _mouse.y - (_pieceHeight / 2), _pieceWidth,_pieceHeight);
 }
 function pieceDropped(e){
-	document.onmousemove = null;
-	document.onmouseup = null;
+	_canvas.removeEventListener("touchmove", updatePuzzle, false);
+	_canvas.removeEventListener("touchend", pieceDropped, false);
 	if(_currentDropPiece != null){
 		var tmp = {xPos:_currentPiece.xPos,yPos:_currentPiece.yPos};
 		_currentPiece.xPos = _currentDropPiece.xPos;
@@ -229,11 +208,9 @@ function resetPuzzleAndCheckWin(){
 		}
 	}
 	if(gameWin){
-		alert("you win!")
 		window.location = 'index.html'
 	}
 }
-
 	</script>
 	</body>
-</html>
+	</html>

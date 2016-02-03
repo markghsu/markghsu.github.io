@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<!-- Rebus -->
+	<head>
+		<meta charset="utf-8">
+		<title>Happy Birthday!</title>
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/main.css">
+		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet'>
+		<link href='https://fonts.googleapis.com/css?family=Squada+One' rel='stylesheet'>
+	</head>
+	<body>
+		<header>
+			<h1>Happy Birthday Angela!!</h1>
+				<nav>
+					<ul id="main-nav">
+						<li><a href="#"></a></li>
+						<li class="active"><a href="#"></a></li>
+						<li><a href="#"></a></li>
+					</ul>
+				</nav>
+		</header>
+		<article>
+			<section class="riddle">
+				<h2 style="font-family: 'Squada One', sans-serif;">16, 06, 68, 88,__, 98</h2>
+				<p>What goes in the blank?</p>
+			</section>
+			<section class="answer">
+				<input type="text" id="answer">
+				<button type="button" onclick="check()">Submit</button>
+			</section>
+		</article>
+		<script>
+			function check(){
+				if(document.getElementById('answer').value.trim()=='L8') {
+					console.log("hello!");
+				}
+				else {
+					console.log("wrong");
+				}
+			}
+		</script>
+	</body>
+</html>

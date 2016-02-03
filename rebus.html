@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<!-- Rebus -->
 	<head>
 		<meta charset="utf-8">
 		<title>Happy Birthday!</title>
@@ -19,12 +20,23 @@
 				</nav>
 		</header>
 		<article>
-			<section class="about">
-				<img id="self-portrait" src="images/birthday.jpg" alt="Me">
-				<h2>Happy 25th Birthday!</h2>
-				<p>Today is your birthday! I hope you're ready to have a lot of fun today!</p>
-				<p></p>
+			<section class="riddle">
+				<img src="images/rebus.gif" alt="little little late late">
+			</section>
+			<section class="answer">
+				<input type="text" id="answer">
+				<button type="button" onclick="check()">Submit</button>
 			</section>
 		</article>
+		<script>
+			function check(){
+				if(document.getElementById('answer').value.toLowerCase().trim()=='too little too late') {
+					console.log("hello!");
+				}
+				else {
+					console.log("wrong");
+				}
+			}
+		</script>
 	</body>
 </html>
