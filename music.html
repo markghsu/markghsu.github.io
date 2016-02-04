@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-<!-- Rebus -->
 	<head>
 		<meta charset="utf-8">
 		<title>Happy Birthday!</title>
@@ -22,10 +21,12 @@
 		</header>
 		<article>
 			<section class="riddle">
-				<h2 style="font-family: 'Squada One', sans-serif;">16, 06, 68, 88,__, 98</h2>
-				<p>What goes in the blank?</p>
+				<audio controls>
+					<source src="audio/aladin.mp3" type="audio/mpeg">
+				</audio>
 			</section>
 			<section class="answer">
+				<h2>Complete the lyric!</h2>
 				<input type="text" id="answer">
 				<button type="button" onclick="check()">Submit</button>
 			</section>
@@ -34,9 +35,9 @@
 		</article>
 		<script>
 			function check(){
-				if(document.getElementById('answer').value.trim()=='L8') {
+				if(document.getElementById('answer').value.toLowerCase().trim()=="it's crystal clear") {
 					alert('correct!');
-					window.location = "music.html";
+					window.location = "korean.html";
 				}
 				else {
 					document.getElementById('error').innerHTML = "Sorry, that's not correct. Please try again!";
