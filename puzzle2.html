@@ -27,7 +27,7 @@
 		<script>
 	//http://code.tutsplus.com/tutorials/create-an-html5-canvas-tile-swapping-puzzle--active-10747
 	// updated for mobile https://mobiforge.com/design-development/touch-friendly-drag-and-drop
-	const PUZZLE_DIFFICULTY = 3
+	const PUZZLE_DIFFICULTY = 5
 	const PUZZLE_HOVER_TINT = "#009900";
 	var _canvas;
 	var _img;
@@ -43,7 +43,7 @@
 	function init(){
 		_img = new Image();
 		_img.addEventListener('load',onImage,false);
-		_img.src = "images/me.jpg";
+		_img.src = "images/cake.jpg";
 	}
 	function onImage(e){
 		_pieceWidth = Math.floor(_img.width / PUZZLE_DIFFICULTY)
