@@ -17,7 +17,6 @@
 						<li><a href="#"></a></li>
 					</ul>
 				</nav>
-				<div id="testing"></div>
 		</header>
 		<article>
 			<section class="about">
@@ -119,8 +118,6 @@
 			var touch = e.targetTouches[0];
 			_mouse.x = touch.pageX;
 			_mouse.y = touch.pageY;
-
-		document.getElementById('test').innerHTML = _mouse.x + ' '+ _mouse.y;
 		_currentPiece = checkPieceClicked();
 		if(_currentPiece != null){
 			_stage.clearRect(_currentPiece.xPos,_currentPiece.yPos,_pieceWidth,_pieceHeight);
