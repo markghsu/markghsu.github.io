@@ -27,7 +27,7 @@
 		<script>
 	//http://code.tutsplus.com/tutorials/create-an-html5-canvas-tile-swapping-puzzle--active-10747
 	// updated for mobile https://mobiforge.com/design-development/touch-friendly-drag-and-drop
-	const PUZZLE_DIFFICULTY = 2
+	const PUZZLE_DIFFICULTY = 4
 	const PUZZLE_HOVER_TINT = "#009900";
 	var _canvas;
 	var _img;
@@ -43,7 +43,7 @@
 	function init(){
 		_img = new Image();
 		_img.addEventListener('load',onImage,false);
-		_img.src = "images/art.png";
+		_img.src = "images/cake.png";
 	}
 	function onImage(e){
 		_pieceWidth = Math.floor(_img.width / PUZZLE_DIFFICULTY)
@@ -207,19 +207,10 @@ function resetPuzzleAndCheckWin(){
 		}
 	}
 	if(gameWin){
-		document.getElementById('answer').innerHTML = '<h2>This artwork is in the Broad Museum. What is the name of its artist?</h2><input type="text"><button type="button" onclick="check()">Submit</button>';
+		alert('You win!');
+		window.location = 'rebus.html'
 	}
-
 }
-	function check(){
-				if(document.getElementById('answer').value.toLowerCase().includes('match')) {
-					alert('correct!');
-					window.location = "riddle2.html"
-				}
-				else {
-					document.getElementById('error').innerHTML = "Sorry, that's not correct. Please try again!";
-				}
-			}
 	</script>
 	</body>
 	</html>

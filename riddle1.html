@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<!-- Rebus -->
+<!-- Riddle match -->
 	<head>
 		<meta charset="utf-8">
 		<title>Happy Birthday!</title>
@@ -22,8 +22,7 @@
 		</header>
 		<article>
 			<section class="riddle">
-				<h2 style="font-family: 'Squada One', sans-serif;">16, 06, 68, 88,__, 98</h2>
-				<p>What goes in the blank?</p>
+				<h2>Tear one off and scratch my head what was red is black instead.</h2>
 			</section>
 			<section class="answer">
 				<input type="text" id="answer">
@@ -34,9 +33,9 @@
 		</article>
 		<script>
 			function check(){
-				if(document.getElementById('answer').value.trim()=='L8') {
+				if(document.getElementById('answer').value.toLowerCase().includes('match')) {
 					alert('correct!');
-					window.location = "korean.html";
+					window.location = "math.html"
 				}
 				else {
 					document.getElementById('error').innerHTML = "Sorry, that's not correct. Please try again!";

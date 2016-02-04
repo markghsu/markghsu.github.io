@@ -25,14 +25,17 @@
 				<input type="text" id="answer">
 				<button type="button" onclick="check()">Submit</button>
 			</section>
+			<section class="error" id="error">
+			</section>
 		</article>
 		<script>
 			function check(){
 				if(document.getElementById('answer').value.trim()=='걱정거리') {
-					console.log("hello!");
+					alert('correct!');
+					window.location = 'riddle1.html';
 				}
 				else {
-					console.log("wrong");
+					document.getElementById('error').innerHTML = "Sorry, that's not correct. Please try again!";
 				}
 			}
 		</script>

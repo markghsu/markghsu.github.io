@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<!-- Rebus -->
+<!-- math puzzle -->
 	<head>
 		<meta charset="utf-8">
 		<title>Happy Birthday!</title>
@@ -22,10 +22,23 @@
 		</header>
 		<article>
 			<section class="riddle">
-				<h2 style="font-family: 'Squada One', sans-serif;">16, 06, 68, 88,__, 98</h2>
-				<p>What goes in the blank?</p>
+				<p>Albert and Bernard just met Cheryl. “When’s your birthday?” Albert asked Cheryl. Cheryl thought a second and said, “I’m not going to tell you, but I’ll give you some clues.” She wrote down a list of 10 dates:
+<p>May 15 — May 16 — May 19<br>
+June 17 — June 18<br>
+July 14 — July 16<br>
+August 14 — August 15 — August 17<br></p>
+<p>“My birthday is one of these,” she said. Then Cheryl whispered in Albert’s ear the month — and only the month — of her birthday. To Bernard, she whispered the day, and only the day.</p>
+
+<p>“Can you figure it out now?” she asked Albert.<br>
+
+Albert: I don’t know when your birthday is, but I know Bernard doesn’t know, either.<br>
+
+Bernard: I didn’t know originally, but now I do.<br>
+
+Albert: Well, now I know, too!</p>
 			</section>
 			<section class="answer">
+				<h2>When is Cheryl's Birthday?</h2>
 				<input type="text" id="answer">
 				<button type="button" onclick="check()">Submit</button>
 			</section>
@@ -34,9 +47,9 @@
 		</article>
 		<script>
 			function check(){
-				if(document.getElementById('answer').value.trim()=='L8') {
+				if(document.getElementById('answer').value.toLowerCase()=='july 16') {
 					alert('correct!');
-					window.location = "korean.html";
+					window.location = "next.html"
 				}
 				else {
 					document.getElementById('error').innerHTML = "Sorry, that's not correct. Please try again!";
