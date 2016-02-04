@@ -2,14 +2,14 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Happy Birthday! version 1</title>
+		<title>Happy Birthday!</title>
 		<link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="css/main.css">
 		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet'>
 	</head>
 	<body onload="init();">
 		<header>
-			<h1>Happy Birthday Angela!!</h1>
+			<h1>Happy Birthday Angela! Puzzle 2</h1>
 				<nav>
 					<ul id="main-nav">
 						<li><a href="#"></a></li>
@@ -149,8 +149,8 @@
 	_currentDropPiece = null;
 	e.preventDefault();
 	var touch = e.targetTouches[0];
-	_mouse.x = touch.pageX;
-	_mouse.y = touch.pageY;
+	_mouse.x = touch.pageX - _canvas.offsetLeft;
+	_mouse.y = touch.pageY - _canvas.offsetTop;
 
 	_stage.clearRect(0,0,_puzzleWidth,_puzzleHeight);
 	var i;
