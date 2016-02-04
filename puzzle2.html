@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Happy Birthday!</title>
+		<title>Happy Birthday! version 1</title>
 		<link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="css/main.css">
 		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet'>
@@ -116,8 +116,8 @@
 	function onPuzzleClick(e){
 			e.preventDefault();
 			var touch = e.targetTouches[0];
-			_mouse.x = touch.pageX;
-			_mouse.y = touch.pageY;
+			_mouse.x = touch.pageX - _canvas.offsetLeft;
+			_mouse.y = touch.pageY - _canvas.offsetTop;
 		_currentPiece = checkPieceClicked();
 		if(_currentPiece != null){
 			_stage.clearRect(_currentPiece.xPos,_currentPiece.yPos,_pieceWidth,_pieceHeight);
