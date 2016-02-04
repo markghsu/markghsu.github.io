@@ -17,6 +17,7 @@
 						<li><a href="#"></a></li>
 					</ul>
 				</nav>
+				<div id="testing"></div>
 		</header>
 		<article>
 			<section class="about">
@@ -27,7 +28,7 @@
 		<script>
 	//http://code.tutsplus.com/tutorials/create-an-html5-canvas-tile-swapping-puzzle--active-10747
 	// updated for mobile https://mobiforge.com/design-development/touch-friendly-drag-and-drop
-	const PUZZLE_DIFFICULTY = 5
+	const PUZZLE_DIFFICULTY = 4
 	const PUZZLE_HOVER_TINT = "#009900";
 	var _canvas;
 	var _img;
@@ -107,7 +108,6 @@
 				yPos += _pieceHeight;
 			}
 		}
-		_canvas.addEventListener("mousedown", onPuzzleClick, false);
 		_canvas.addEventListener("touchstart", onPuzzleClick, false);
 	}
 	function shuffleArray(o){
@@ -115,24 +115,12 @@
 		return o;j
 	}
 	function onPuzzleClick(e){
-		
-		console.log(e.layerX + '  ' + e.offsetX);
-		if(e.type == 'mousedown') {
-			if(e.layerX || e.layerX == 0){
-				_mouse.x = e.layerX - _canvas.offsetLeft;
-				_mouse.y = e.layerY - _canvas.offsetTop;
-			}
-			else if(e.offsetX || e.offsetX == 0){
-				_mouse.x = e.offsetX - _canvas.offsetLeft;
-				_mouse.y = e.offsetY - _canvas.offsetTop;
-			}
-		}
-		else {
 			e.preventDefault();
 			var touch = e.targetTouches[0];
-			_mouse.x = touch.pageX - _canvas.offsetLeft;
-			_mouse.y = touch.pageY - _canvas.offsetTop;
-		}
+			_mouse.x = touch.pageX;
+			_mouse.y = touch.pageY;
+
+		document.getElementById('test').innerHTML = _mouse.x + ' '+ _mouse.y;
 		_currentPiece = checkPieceClicked();
 		if(_currentPiece != null){
 			_stage.clearRect(_currentPiece.xPos,_currentPiece.yPos,_pieceWidth,_pieceHeight);
@@ -143,8 +131,6 @@
 			_stage.restore();//restore previous draw style (100% opacity)
 			_canvas.addEventListener("touchmove", updatePuzzle, false);
 			_canvas.addEventListener("touchend", pieceDropped, false);
-			_canvas.addEventListener("mousemove", updatePuzzle, false);
-			_canvas.addEventListener("mouseup", pieceDropped, false);
 		}
 	}
 	function checkPieceClicked(){
@@ -164,23 +150,10 @@
 	function updatePuzzle(e){
 		
 	_currentDropPiece = null;
-	if(e.type == 'mousemove') {
-		console.log(e.layerX + '  ' + e.offsetX);
-		if(e.layerX || e.layerX == 0){
-			_mouse.x = e.layerX - _canvas.offsetLeft;
-			_mouse.y = e.layerY - _canvas.offsetTop;
-		}
-		else if(e.offsetX || e.offsetX == 0){
-			_mouse.x = e.offsetX - _canvas.offsetLeft;
-			_mouse.y = e.offsetY - _canvas.offsetTop;
-		}
-	}
-	else {
-		e.preventDefault();
-		var touch = e.targetTouches[0];
-		_mouse.x = touch.pageX - _canvas.offsetLeft;
-		_mouse.y = touch.pageY - _canvas.offsetTop;
-	}
+	e.preventDefault();
+	var touch = e.targetTouches[0];
+	_mouse.x = touch.pageX;
+	_mouse.y = touch.pageY;
 
 	_stage.clearRect(0,0,_puzzleWidth,_puzzleHeight);
 	var i;
@@ -215,8 +188,6 @@
 function pieceDropped(e){
 	_canvas.removeEventListener("touchmove", updatePuzzle, false);
 	_canvas.removeEventListener("touchend", pieceDropped, false);
-	_canvas.removeEventListener("mousemove", updatePuzzle, false);
-	_canvas.removeEventListener("mouseup", pieceDropped, false);
 	if(_currentDropPiece != null){
 		var tmp = {xPos:_currentPiece.xPos,yPos:_currentPiece.yPos};
 		_currentPiece.xPos = _currentDropPiece.xPos;
