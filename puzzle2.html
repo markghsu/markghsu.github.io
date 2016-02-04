@@ -22,6 +22,10 @@
 			<section class="about">
 				<canvas id="canvas">Error, your browser doesn't support Canvas element</canvas>
 			</section>
+			<section class="answer" id="answer-wrapper">
+			</section>
+			<section class="error" id="error">
+			</section>
 		</article>
 
 		<script>
@@ -207,14 +211,14 @@ function resetPuzzleAndCheckWin(){
 		}
 	}
 	if(gameWin){
-		document.getElementById('answer').innerHTML = '<h2>This artwork is in the Broad Museum. What is the name of its artist?</h2><input type="text"><button type="button" onclick="check()">Submit</button>';
+		document.getElementById('answer-wrapper').innerHTML = '<h2>This artwork is in the Broad Museum. What is the name of its artist?</h2><input id="answer" type="text"><button type="button" onclick="check()">Submit</button>';
 	}
 
 }
 	function check(){
-				if(document.getElementById('answer').value.toLowerCase().includes('match')) {
+				if(document.getElementById('answer').value.toLowerCase().trim()=='jean-michel basquiat') {
 					alert('correct!');
-					window.location = "riddle2.html"
+					window.location = "real.html"
 				}
 				else {
 					document.getElementById('error').innerHTML = "Sorry, that's not correct. Please try again!";

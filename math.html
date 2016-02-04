@@ -22,7 +22,9 @@
 		</header>
 		<article>
 			<section class="riddle">
-				<h2>Tear one off and scratch my head what was red is black instead.</h2>
+				<h2>A fast food restaurant sells chicken in orders of 6, 9, and 20. <br>
+
+What is the largest number of pieces of chicken you cannot order from this restaurant?</h2>
 			</section>
 			<section class="answer">
 				<input type="text" id="answer">
@@ -33,9 +35,9 @@
 		</article>
 		<script>
 			function check(){
-				if(document.getElementById('answer').value.toLowerCase().includes('match')) {
+				if(document.getElementById('answer').value.trim()=='43') {
 					alert('correct!');
-					window.location = "riddle2.html"
+					window.location = "santamonica.html"
 				}
 				else {
 					document.getElementById('error').innerHTML = "Sorry, that's not correct. Please try again!";
